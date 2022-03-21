@@ -8,10 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InwonerFactory {
-    private InwonerFactory() {}
+public enum InwonerFactory {
+    INSTANCE;
 
-    public static List<Inwoner> getInwonersFromFile() {
+    public List<Inwoner> getInwonersFromFile() {
         List<Inwoner> inwonerList = new ArrayList<>();
         File file = new File("src/main/resources/Inwoners/inwoners.txt");
         try {
@@ -30,11 +30,10 @@ public class InwonerFactory {
                         inwonerList.add(zoogdier);
                         System.out.println("InwonerFactory - nieuwe inwoner gecreëerd van type Zoogdier: " + zoogdier);
                         break;
+                    default:
+                        throw new IllegalArgumentException();
                 }
-            }
-            bufferedReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            } bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
