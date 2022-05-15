@@ -1,23 +1,32 @@
 package be.vdab.designpatternstest_eiland.domain;
 
 import be.vdab.designpatternstest_eiland.factory.InwonerFactory;
+import be.vdab.designpatternstest_eiland.observer.Observer;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public enum Eiland {
     INSTANCE;
     private List<Inwoner> inwonerList= InwonerFactory.INSTANCE.getInwonersFromFile();
+    private final Set<Observer> observers = new LinkedHashSet<>();
 
-    public void addObserver(Inwoner inwoner) {
-        inwonerList.add(inwoner);
+    void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
-    public void removeObserver(Inwoner inwoner) {
-        inwonerList.remove(inwoner);
+    void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    void notifyObservers() {
+        observers.forEach(observer -> observer.update(this));
     }
 
     public void simuleerVulkaanUitbarsting() {
+        inwonerList.forEach(inwoner -> addObserver(inwoner));
         System.out.println("De vulkaan barst uit!! Wat een ravage.");
-        inwonerList.forEach(inwoner -> inwoner.schuilVoorVulkaanUitbarsting(inwoner));
+        notifyObservers();
     }
 }

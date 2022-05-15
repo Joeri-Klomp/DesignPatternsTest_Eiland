@@ -6,7 +6,7 @@ public class Vogel extends Inwoner {
     }
 
     @Override
-    public void schuilVoorVulkaanUitbarsting(Inwoner inwoner) {
+    public void update(Eiland eiland) {
         System.out.println(getNaam() + " zoekt de veiligheid op door hoger te gaan vliegen!");
     }
 }

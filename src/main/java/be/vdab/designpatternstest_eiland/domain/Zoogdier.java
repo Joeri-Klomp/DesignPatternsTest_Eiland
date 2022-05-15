@@ -6,7 +6,7 @@ public class Zoogdier extends Inwoner {
     }
 
     @Override
-    public void schuilVoorVulkaanUitbarsting(Inwoner inwoner) {
+    public void update(Eiland eiland) {
         System.out.println(getNaam() + " kruipt zijn/haar hol in.");
     }
 }

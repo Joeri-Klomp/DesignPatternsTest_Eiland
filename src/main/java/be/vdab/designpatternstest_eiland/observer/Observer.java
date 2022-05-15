@@ -1,7 +1,7 @@
 package be.vdab.designpatternstest_eiland.observer;
 
-import be.vdab.designpatternstest_eiland.domain.Inwoner;
+import be.vdab.designpatternstest_eiland.domain.Eiland;
 
 public interface Observer {
-    void schuilVoorVulkaanUitbarsting (Inwoner inwoner);
+    void update(Eiland eiland);
 }
